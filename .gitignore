@@ -1,0 +1,7 @@
+# ROS workspace build files
+build/
+devel/
+install/
+log/
+*.swp
+*.pyc
