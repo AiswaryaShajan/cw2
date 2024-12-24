@@ -17,18 +17,20 @@
     <link name="left_wheel">
         <visual>
             <geometry>
-                <cylinder radius="0.05" length="0.1"/> <!--Base dimensions in metres-->
+                <cylinder radius="0.05" length="0.05"/> <!--Base dimensions in metres-->
             </geometry>
+            <origin rpy="1.5708 0 0" xyz="0 0 0"/>
             <material name="black">
                 <color rgba ="0 0 0 1"/>
             </material>
         </visual>
     </link>
 
-    <joint name="left_wheel_joint" type="continuous">
+    <joint name="left_wheel_joint" type="revolute">
         <parent link="base_link"/>
         <child link="left_wheel"/>
-        <origin xyz="-0.2 0.15 0" rpy="0 0 0"/>
+        <origin xyz="-0.2 0.176 0" rpy="0 0 0"/>
         <axis xyz="0 1 0"/>
+        <limit lower="0" upper="6.2832" effort="100" velocity="10"/>
     </joint>
 </robot>
