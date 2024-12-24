@@ -1,0 +1,14 @@
+<robot name="sphere_pusher">
+
+<!--Base Link-->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.5 0.3 0.1"/> <!--Base dimensions in metres-->
+            </geometry>
+            <material name="blue">
+                <color rgba ="0 0 1 1"/>
+            </material>
+        </visual>
+    </link>
+</robot>
