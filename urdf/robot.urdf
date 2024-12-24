@@ -54,4 +54,21 @@
         <limit lower="0" upper="6.2832" effort="100" velocity="10"/>
     </joint>
 
+<!--Castor Wheel-->
+    <link name="castor_wheel">
+        <visual>
+            <geometry>
+                <sphere radius="0.03"/> <!--Wheel dimensions in metres-->
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <joint name="castor_wheel_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="castor_wheel"/>
+        <origin xyz="0 0 -0.04" rpy="0 0 0"/>
+    </joint>
+
+
 </robot>
