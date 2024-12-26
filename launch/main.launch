@@ -1,0 +1,36 @@
+<launch>
+    <!-- Argument to choose whether to use Gazebo or RViz -->
+    <arg name="simulator" default="gazebo" doc="Choose 'gazebo' or 'rviz'" />
+
+    <!-- Robot Description -->
+    <param name="robot_description" command="cat $(find cw_2)/urdf/robot.urdf" />
+
+    <!-- For Gazebo -->
+    <group if="$(eval arg('simulator') == 'gazebo')">
+        <arg name="world_name" default="$(find cw_2)/worlds/assessment_world.world" />
+        <param name="use_sim_time" value="true"/>
+        
+        <!-- Start Gazebo server and GUI -->
+        <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(arg world_name)" />
+        <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" />
+        
+        <!-- Spawn Robot in Gazebo -->
+        <node name="spawn_sphere_pusher" pkg="gazebo_ros" type="spawn_model" args="-file $(find cw_2)/urdf/robot.urdf -urdf -x 0 -y 0 -z 0 -model sphere_pusher" />
+    </group>
+
+    <!-- For RViz -->
+    <group if="$(eval arg('simulator') == 'rviz')">
+        <!-- Reference to your RViz configuration file -->
+        <arg name="config" default="$(find cw_2)/config/urdf.rviz" />
+
+        <!-- Joint State Publisher for interactive joint control -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+        <!-- Robot State Publisher to broadcast TF -->
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+        <!-- Start RViz with the specified configuration -->
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg config)" />
+    </group>
+
+</launch>
