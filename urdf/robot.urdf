@@ -4,7 +4,7 @@
     <link name="base_link">
         <visual>
             <geometry>
-                <box size="0.5 0.3 0.1"/> <!--Base dimensions in metres-->
+                <box size="0.5 0.3 0.1"/>
             </geometry>
             <material name="blue">
                 <color rgba="0 0 1 1"/>
@@ -26,7 +26,7 @@
     <link name="left_wheel">
         <visual>
             <geometry>
-                <cylinder radius="0.05" length="0.05"/> <!--Wheel dimensions in metres-->
+                <cylinder radius="0.05" length="0.05"/>
             </geometry>
             <origin rpy="1.5708 0 0" xyz="0 0 0"/>
             <material name="black">
@@ -54,11 +54,22 @@
         <limit lower="0" upper="6.2832" effort="100" velocity="10"/>
     </joint>
 
+    <transmission name="left_wheel_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="left_wheel_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="left_wheel_motor">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
 <!--Right Wheel-->
     <link name="right_wheel">
         <visual>
             <geometry>
-                <cylinder radius="0.05" length="0.05"/> <!--Wheel dimensions in metres-->
+                <cylinder radius="0.05" length="0.05"/>
             </geometry>
             <origin rpy="1.5708 0 0" xyz="0 0 0"/>
             <material name="black">
@@ -86,11 +97,22 @@
         <limit lower="0" upper="6.2832" effort="100" velocity="10"/>
     </joint>
 
+    <transmission name="right_wheel_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="right_wheel_joint">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="right_wheel_motor">
+            <hardwareInterface>EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
 <!--Castor Wheel-->
     <link name="castor_wheel">
         <visual>
             <geometry>
-                <sphere radius="0.03"/> <!--Wheel dimensions in metres-->
+                <sphere radius="0.03"/>
             </geometry>
             <material name="black"/>
         </visual>
