@@ -16,6 +16,9 @@
     <!-- Load Controller Config -->
     <rosparam file="$(find cw_2)/config/diff_drive.yaml" command="load" />
     
+    <!-- Start Joint State Publisher -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    
     <!-- Start Controller Manager -->
     <node name="controller_spawner" pkg="controller_manager" type="spawner" args="diff_drive_controller" />
 </launch>
