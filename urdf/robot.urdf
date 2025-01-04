@@ -13,9 +13,10 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.01"/> <!-- Low mass but not negligible -->
-            <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/> <!-- Proportional inertia -->
+            <mass value="1.0"/> <!-- Increase mass -->
+            <inertia ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1"/>
         </inertial>
+
     </link>
 
     <!-- Base Link without Inertia -->
@@ -70,7 +71,7 @@
         <child link="left_wheel"/>
         <origin xyz="-0.2 0.176 -0.04" rpy="0 0 0"/>
         <axis xyz="0 1 0"/>
-        <limit lower="0" upper="6.2832" effort="100" velocity="10"/>
+        <limit lower="0" upper="6.2832" effort="1" velocity="5"/>
     </joint>
 
     <!-- Transmission for Left Wheel -->
@@ -114,7 +115,7 @@
         <child link="right_wheel"/>
         <origin xyz="-0.2 -0.176 -0.04" rpy="0 0 0"/>
         <axis xyz="0 1 0"/>
-        <limit lower="0" upper="6.2832" effort="100" velocity="10"/>
+        <limit lower="0" upper="6.2832" effort="1" velocity="5"/>
     </joint>
 
     <!-- Transmission for Right Wheel -->
