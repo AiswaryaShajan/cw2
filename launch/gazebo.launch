@@ -11,8 +11,11 @@
     <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" />
     
     <!-- Spawn Robot -->
-    <node name="spawn_sphere_pusher" pkg="gazebo_ros" type="spawn_model" args="-file $(find cw_2)/urdf/robot.urdf -urdf -x 1 -y 1 -z 0 -Y 1.5 -model sphere_pusher" />
-
+    <node name="spawn_sphere_pusher" pkg="gazebo_ros" type="spawn_model"
+        args="-file $(find cw_2)/urdf/robot.urdf -urdf -x 1 -y 1 -z 0 -Y 1.5 -model sphere_pusher"
+        respawn="false" output="screen">
+    <param name="timeout" value="60.0"/>
+    </node>
     <!-- Load Controller Config -->
     <rosparam file="$(find cw_2)/config/diff_drive.yaml" command="load" />
     
