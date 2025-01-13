@@ -1,27 +1,39 @@
 <launch>
     <!-- Robot Description -->
-    <param name="robot_description" command="cat $(find cw_2)/urdf/robot.urdf" />
-    
+    <param name="robot_description" command="cat /home/ash/ros/catkin_ws/src/cw_2/urdf/robot.xacro" />
+
+    <arg name="x" default="-0.569773"/>
+    <arg name="y" default="-2.005698"/>
+    <arg name="z" default="0.099999"/>
+    <arg name="R" default="0.000002"/>
+    <arg name="P" default="0.000013"/>
+    <arg name="Y" default="-1.547400"/>
+
     <!-- World and Sim Time -->
-    <arg name="world_name" default="$(find cw_2)/worlds/assessment_world.world" />
+    <arg name="world_name" default="/home/ash/ros/catkin_ws/src/cw_2/worlds/assessment_world.world" />
     <param name="use_sim_time" value="true"/>
-    
+
     <!-- Start Gazebo server and GUI -->
     <node name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(arg world_name)" />
     <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" />
-    
+
     <!-- Spawn Robot -->
-    <node name="spawn_sphere_pusher" pkg="gazebo_ros" type="spawn_model"
-        args="-file $(find cw_2)/urdf/robot.urdf -urdf -x 1 -y 1 -z 0 -Y 1.5 -model sphere_pusher"
-        respawn="false" output="screen">
-    <param name="timeout" value="60.0"/>
-    </node>
+    <node name="spawn_sphere_pusher" pkg="gazebo_ros" type="spawn_model" output="screen" 
+        args="-urdf -param robot_description -model sphere_pusher -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
+
     <!-- Load Controller Config -->
-    <rosparam file="$(find cw_2)/config/diff_drive.yaml" command="load" />
-    
+    <!-- Uncomment if you have a controller config file -->
+    <!-- <rosparam file="$(find cw_2)/config/diff_drive.yaml" command="load" /> -->
+
     <!-- Start Joint State Publisher -->
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-    
+    <!-- Uncomment if you need to publish joint states -->
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> -->
+
     <!-- Start Controller Manager -->
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" args="diff_drive_controller" />
+    <!-- Uncomment if you have controllers to manage -->
+    <!-- <node name="controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" /> -->
+
+    <!-- Start Controller Spawner -->
+    <!-- Uncomment if you need to spawn controllers -->
+    <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" args="diff_drive_controller" /> -->
 </launch>

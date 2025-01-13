@@ -1,18 +1,16 @@
 <?xml version="1.0"?>
 <launch>
+
     <!-- Robot Description -->
-    <param name="robot_description" command="cat $(find cw_2)/urdf/robot.urdf" />
-    
-    <!-- RViz Configuration -->
-    <arg name="config" default="$(find cw_2)/config/urdf.rviz" />
+    <param name="robot_description" command="cat '$(find cw_2)/urdf/robot.xacro'"/>
     
     <!-- Joint State and Robot State Publishers -->
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-    
-    <!-- Static Transform Publisher -->
-    <node name="static_transform_publisher" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0 0 0 0 1 world base_link" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="False"/>
+    </node>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
     
     <!-- Launch RViz -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg config)" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find cw_2)/rviz/robot.rviz"/>
+
 </launch>
