@@ -1,4 +1,7 @@
 <launch>
+    <!-- Set the GAZEBO_MODEL_PATH to include your models directory -->
+    <env name="GAZEBO_MODEL_PATH" value="$(find cw_2)/models:/home/ash/ros/catkin_ws/src/cw_2/models"/>
+
     <!-- Robot Description -->
     <param name="robot_description" command="cat /home/ash/ros/catkin_ws/src/cw_2/urdf/robot.xacro" />
 
@@ -21,19 +24,4 @@
     <node name="spawn_sphere_pusher" pkg="gazebo_ros" type="spawn_model" output="screen" 
         args="-urdf -param robot_description -model sphere_pusher -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
 
-    <!-- Load Controller Config -->
-    <!-- Uncomment if you have a controller config file -->
-    <!-- <rosparam file="$(find cw_2)/config/diff_drive.yaml" command="load" /> -->
-
-    <!-- Start Joint State Publisher -->
-    <!-- Uncomment if you need to publish joint states -->
-    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> -->
-
-    <!-- Start Controller Manager -->
-    <!-- Uncomment if you have controllers to manage -->
-    <!-- <node name="controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" /> -->
-
-    <!-- Start Controller Spawner -->
-    <!-- Uncomment if you need to spawn controllers -->
-    <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" args="diff_drive_controller" /> -->
 </launch>
