@@ -1,3 +1,4 @@
+<?xml version="1.0" ?>
 <sdf version='1.6'>
   <world name='default'>
     <light name='sun' type='directional'>
@@ -814,5 +815,20 @@
         <pose frame=''>0 0 10 0 -0 0</pose>
       </light>
     </state>
+    <!--Include large sphere-->
+    <include>
+      <uri>model://large_sphere</uri>
+      <pose>0.5 0 0 0 0 0</pose>
+    </include>
+    <!--Include medium sphere-->
+    <include>
+      <uri>model://medium_sphere</uri>
+      <pose>2 0 0 0 0 0</pose>
+    </include>
+    <!--Include small sphere-->
+    <include>
+      <uri>model://small_sphere</uri>
+      <pose>1 0 0 0 0 0</pose>
+    </include>
   </world>
 </sdf>
