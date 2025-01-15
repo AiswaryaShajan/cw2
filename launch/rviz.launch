@@ -7,9 +7,6 @@
         <param name="use_gui" value="False"/>
     </node>
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
-        <!-- Ensure it does not publish base_footprint if Gazebo is handling it -->
-        <param name="publish_frequency" value="50.0"/>
-        <param name="ignore_tf_prefix" value="base_footprint"/>
     </node>
 
     <!-- Launch RViz -->
