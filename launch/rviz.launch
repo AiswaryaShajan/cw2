@@ -9,6 +9,8 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
     </node>
 
+    <!-- Static Transform Publisher Node -->
+  <node pkg="tf" type="static_transform_publisher" name="world_to_lidar_link" args="0 0 0.1 0 0 0 world lidar_link 100" />
     <!-- Launch RViz -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find cw_2)/rviz/robot.rviz"/>
 </launch>
