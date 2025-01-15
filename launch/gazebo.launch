@@ -23,5 +23,6 @@
     <!-- Spawn Robot -->
     <node name="spawn_sphere_pusher" pkg="gazebo_ros" type="spawn_model" output="screen" 
         args="-urdf -param robot_description -model sphere_pusher -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/>
+    
 
 </launch>
